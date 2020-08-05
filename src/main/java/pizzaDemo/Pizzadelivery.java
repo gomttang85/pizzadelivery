@@ -16,10 +16,16 @@ public class Pizzadelivery {
 
     @PostPersist
     public void onPostPersist(){
+
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Pizzashipped pizzashipped = new Pizzashipped();
         BeanUtils.copyProperties(this, pizzashipped);
         pizzashipped.publishAfterCommit();
-
 
     }
 
